@@ -5,21 +5,24 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import BookIcon from '@material-ui/icons/Book'
 
+import Search from '../Search'
 import './App.css'
 import { books } from '../../books.json'
 
 class App extends Component {
   render() {
     console.log(books)
+    const localBooks = books.slice(0, 20)
     const dense = true
     return (
       <div className="App">
+        <Search />
         <List dense={dense}>
-          {books.map((book, index) => (<ListItem key={index}>
+          {localBooks.map((book, index) => (<ListItem key={index}>
             <ListItemIcon>
               <BookIcon />
             </ListItemIcon>
-            <ListItemText primary={`${book.title} - ${book.author}`} />
+            <ListItemText primary={book.title} />
           </ListItem>))}
         </List>
       </div>
