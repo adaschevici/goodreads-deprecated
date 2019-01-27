@@ -1,7 +1,6 @@
 Small exercise:
 
 
-1) Display the count of books in a div
+1) Find the bug in the search input
 
-2) Add the author to the title
-
+2) Make the search case insensitive
