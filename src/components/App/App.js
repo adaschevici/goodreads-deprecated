@@ -7,14 +7,14 @@ import BookIcon from '@material-ui/icons/Book'
 
 import Search from '../Search'
 import './App.css'
-import { books } from '../../books.json'
+import { books as globalBooks } from '../../books.json'
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.books = books.slice(0, 20)
+    this.books = globalBooks.slice(0, 20)
     this.state = {
-      books: books.slice(0, 20)
+      books: this.books.slice(0, 20)
     }
   }
 
@@ -26,16 +26,19 @@ class App extends Component {
 
   render() {
     const dense = true
+    const { books } = this.state
     return (
       <div className="App">
         <Search search={term => this.search(term, this.books)} />
         <List dense={dense}>
-          {this.state.books.map((book, index) => (<ListItem key={index}>
-            <ListItemIcon>
-              <BookIcon />
-            </ListItemIcon>
-            <ListItemText primary={book.title} />
-          </ListItem>))}
+          {books.map(book => (
+            <ListItem key={book.id}>
+              <ListItemIcon>
+                <BookIcon />
+              </ListItemIcon>
+              <ListItemText primary={book.title} />
+            </ListItem>
+          ))}
         </List>
       </div>
     )

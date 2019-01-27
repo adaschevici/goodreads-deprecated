@@ -15,11 +15,13 @@ class Search extends Component {
   handleChange = value => this.setState({ input: value })
 
   render() {
-    console.log(this.state.input)
+    // console.log(this.state.input)
+    const { search } = this.props
+    const { input } = this.state
     return (
       <div className="search">
         <Input onChange={event => this.handleChange(event.target.value)} />
-        <Button onClick={() => this.props.search(this.state.input)} />
+        <Button onClick={() => search(input)} />
       </div>
     )
   }

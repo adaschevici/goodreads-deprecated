@@ -2,7 +2,7 @@ import React from 'react'
 import TextField from '@material-ui/core/TextField'
 import PropTypes from 'prop-types'
 
-const Input = (props) => {
+const Input = ({ onChange }) => {
   return (
     <TextField
       id="outlined-search"
@@ -10,7 +10,7 @@ const Input = (props) => {
       type="search"
       margin="normal"
       variant="outlined"
-      onChange={props.onChange}
+      onChange={onChange}
     />
   )
 }

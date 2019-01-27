@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '@material-ui/core/Button'
 
-const SearchButton = (props) => {
+const SearchButton = ({ onClick }) => {
   return (
     <div style={{ margin: 'auto 0' }}>
       <Button
         variant="contained"
         size="medium"
         color="primary"
-        onClick={props.onClick}
+        onClick={onClick}
       >
         Search
       </Button>
@@ -20,7 +20,7 @@ const SearchButton = (props) => {
 SearchButton.defaultProps = {}
 
 SearchButton.propTypes = {
-  classes: PropTypes.object.isRequired
+  onClick: PropTypes.func.isRequired
 }
 
 export default SearchButton
