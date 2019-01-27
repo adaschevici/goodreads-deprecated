@@ -12,6 +12,7 @@ import { books } from '../../books.json'
 class App extends Component {
   constructor(props) {
     super(props)
+    this.books = books.slice(0, 20)
     this.state = {
       books: books.slice(0, 20)
     }
@@ -19,7 +20,7 @@ class App extends Component {
 
   search = term => {
     this.setState({
-      books: this.state.books.filter(book => book.title.includes(term))
+      books: this.books.filter(book => book.title.includes(term))
     })
   }
 
@@ -27,7 +28,7 @@ class App extends Component {
     const dense = true
     return (
       <div className="App">
-        <Search search={term => this.search(term, this.state.books)} />
+        <Search search={term => this.search(term, this.books)} />
         <List dense={dense}>
           {this.state.books.map((book, index) => (<ListItem key={index}>
             <ListItemIcon>
