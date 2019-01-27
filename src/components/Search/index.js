@@ -4,11 +4,11 @@ import Input from './components/input'
 import Button from './components/button'
 import './index.css'
 
-const Search = ({...props}) => {
+const Search = (props) => {
   return (
     <div className="search">
       <Input />
-      <Button />
+      <Button onClick={() => props.search('Hunger')}/>
     </div>
   )
 }

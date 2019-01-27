@@ -18,7 +18,7 @@ const SearchButton = (props) => {
         size="medium"
         color="primary"
         className={classes.button}
-        onClick={() => console.log('Hello from button')}
+        onClick={props.onClick}
       >
         Search
       </Button>

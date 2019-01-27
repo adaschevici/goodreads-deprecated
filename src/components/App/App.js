@@ -10,15 +10,26 @@ import './App.css'
 import { books } from '../../books.json'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      books: books.slice(0, 20)
+    }
+  }
+
+  search = term => {
+    this.setState({
+      books: this.state.books.filter(book => book.title.includes(term))
+    })
+  }
+
   render() {
-    console.log(books)
-    const localBooks = books.slice(0, 20)
     const dense = true
     return (
       <div className="App">
-        <Search />
+        <Search search={term => this.search(term, this.state.books)} />
         <List dense={dense}>
-          {localBooks.map((book, index) => (<ListItem key={index}>
+          {this.state.books.map((book, index) => (<ListItem key={index}>
             <ListItemIcon>
               <BookIcon />
             </ListItemIcon>
