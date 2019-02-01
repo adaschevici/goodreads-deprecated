@@ -1,17 +1,10 @@
 import React, { Component } from 'react'
-// import List from '@material-ui/core/List'
-// import ListItem from '@material-ui/core/ListItem'
-// import ListItemIcon from '@material-ui/core/ListItemIcon'
-// import ListItemText from '@material-ui/core/ListItemText'
-// import BookIcon from '@material-ui/icons/Book'
 
 import BookList from '../BookList/BookList'
 import Search from '../Search'
 import './App.css'
 
 const columnData = [
-  { id: 'edit', numeric: false, disablePadding: false, label: 'Edit' },
-  { id: 'delete', numeric: false, disablePadding: false, label: 'Delete' },
   { id: 'isbn', numeric: false, disablePadding: false, label: 'ISBN' },
   { id: 'isbn13', numeric: false, disablePadding: false, label: 'ISBN 13' },
   { id: 'authors', numeric: false, disablePadding: false, label: 'Author' },

@@ -1,15 +1,6 @@
 ## Small exercise:
 
 
-1) Fix the search bug as the state mutations are preserved
-
-2) Add pictures for each book(get these from the content of the `book.json`)
-
-3) Add loading state and spinner
-
-
-
-## Bonus points:
-
-2) Implement pagination
-
+1) Add missing actions - `FETCH_BOOKS_STARTED, FETCH_BOOKS_SUCCESS, FETCH_BOOKS_FAILED``
+2) Add error handling, API should be turned off
+3) Add loading state
