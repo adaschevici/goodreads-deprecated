@@ -7,20 +7,27 @@ import BookIcon from '@material-ui/icons/Book'
 
 import Search from '../Search'
 import './App.css'
-import { books as globalBooks } from '../../books.json'
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.books = globalBooks.slice(0, 20)
     this.state = {
-      books: this.books.slice(0, 20)
+      books: []
     }
   }
 
+  componentDidMount() {
+    fetch(`${process.env.REACT_APP_API_URL}/?_page=1`)
+      .then(response => response.json())
+      .then(json => this.setState({
+        books: json
+      }))
+  }
+
   search = term => {
+    const { books } = this.state
     this.setState({
-      books: this.books.filter(book => book.title.includes(term))
+      books: books.filter(book => book.title.includes(term))
     })
   }
 
@@ -29,7 +36,7 @@ class App extends Component {
     const { books } = this.state
     return (
       <div className="App">
-        <Search search={term => this.search(term, this.books)} />
+        <Search search={term => this.search(term, books)} />
         <List dense={dense}>
           {books.map(book => (
             <ListItem key={book.id}>
