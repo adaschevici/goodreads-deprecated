@@ -1,18 +1,11 @@
-## Setting up `json-server`
+1) Fix the search bug as the state mutations are preserved
 
-```bash
-mkdir server
-npm i json-server
-```
-### In the file at `server/config-server.json` add:
+2) Add pictures for each book(get these from the content of the `book.json`)
 
-```json
-{
-  "port": 4242
-}
-```
+3) Add loading state and spinner
 
-Small exercise:
 
-1) Set up `json-server`
-2) Fix the PropTypes warnings
+
+## Bonus points:
+
+2) Implement pagination

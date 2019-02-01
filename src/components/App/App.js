@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_API_URL}/?_page=1`)
+    fetch('/books/?_page=1')
       .then(response => response.json())
       .then(json => this.setState({
         books: json
@@ -25,20 +25,20 @@ class App extends Component {
   }
 
   search = term => {
-    const { books } = this.state
     this.setState({
-      books: books.filter(book => book.title.includes(term))
+      filter: term
     })
   }
 
   render() {
     const dense = true
-    const { books } = this.state
+    const { books, filter } = this.state
+    const filteredBooks =  books.filter(book => book.title.includes(filter))
     return (
       <div className="App">
-        <Search search={term => this.search(term, books)} />
+        <Search search={term => this.search(term)} />
         <List dense={dense}>
-          {books.map(book => (
+          {filteredBooks.map(book => (
             <ListItem key={book.id}>
               <ListItemIcon>
                 <BookIcon />

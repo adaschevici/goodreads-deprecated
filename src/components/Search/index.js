@@ -15,7 +15,6 @@ class Search extends Component {
   handleChange = value => this.setState({ input: value })
 
   render() {
-    // console.log(this.state.input)
     const { search } = this.props
     const { input } = this.state
     return (
@@ -29,6 +28,8 @@ class Search extends Component {
 
 Search.defaultProps = {}
 
-Search.propTypes = {}
+Search.propTypes = {
+  search: PropTypes.func.isRequired
+}
 
 export default Search
