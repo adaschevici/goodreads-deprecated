@@ -1,23 +1,38 @@
 import React, { Component } from 'react'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import BookIcon from '@material-ui/icons/Book'
+// import List from '@material-ui/core/List'
+// import ListItem from '@material-ui/core/ListItem'
+// import ListItemIcon from '@material-ui/core/ListItemIcon'
+// import ListItemText from '@material-ui/core/ListItemText'
+// import BookIcon from '@material-ui/icons/Book'
 
+import BookList from '../BookList/BookList'
 import Search from '../Search'
 import './App.css'
+
+const columnData = [
+  { id: 'edit', numeric: false, disablePadding: false, label: 'Edit' },
+  { id: 'delete', numeric: false, disablePadding: false, label: 'Delete' },
+  { id: 'isbn', numeric: false, disablePadding: false, label: 'ISBN' },
+  { id: 'isbn13', numeric: false, disablePadding: false, label: 'ISBN 13' },
+  { id: 'authors', numeric: false, disablePadding: false, label: 'Author' },
+  { id: 'original_title', numeric: false, disablePadding: false, label: 'Title' },
+  { id: 'original_publication_year', numeric: true, disablePadding: false, label: 'Year' },
+  { id: 'average_rating', numeric: false, disablePadding: false, label: 'Star Rating' },
+  { id: 'language_code', numeric: false, disablePadding: false, label: 'Language' },
+  { id: 'thumbnail', numeric: false, disablePadding: false, label: 'Thumbnail' },
+]
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      books: []
+      books: [],
+      filter: ''
     }
   }
 
   componentDidMount() {
-    fetch('/books/?_page=1')
+    fetch('/books')
       .then(response => response.json())
       .then(json => this.setState({
         books: json
@@ -31,22 +46,12 @@ class App extends Component {
   }
 
   render() {
-    const dense = true
     const { books, filter } = this.state
     const filteredBooks =  books.filter(book => book.title.includes(filter))
     return (
       <div className="App">
         <Search search={term => this.search(term)} />
-        <List dense={dense}>
-          {filteredBooks.map(book => (
-            <ListItem key={book.id}>
-              <ListItemIcon>
-                <BookIcon />
-              </ListItemIcon>
-              <ListItemText primary={book.title} />
-            </ListItem>
-          ))}
-        </List>
+        <BookList books={filteredBooks} columnHeaders={columnData} />
       </div>
     )
   }

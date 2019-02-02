@@ -1,4 +1,5 @@
 .search {
-  display: grid;
+  display: inline-grid;
   grid-template-columns: 16rem 6rem;
+  margin: auto 0;
 }
