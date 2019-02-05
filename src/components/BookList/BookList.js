@@ -104,18 +104,9 @@ class BookList extends Component {
 
 BookList.propTypes = {
   classes: PropTypes.shape({
-    root: {
-      maxWidth: PropTypes.string,
-      margin: PropTypes.string,
-      marginTop: PropTypes.number,
-    },
-    table: {
-      minWidth: PropTypes.number,
-      fontFamily: PropTypes.string,
-    },
-    tableWrapper: {
-      overflowX: PropTypes.string,
-    }
+    root: PropTypes.string,
+    table: PropTypes.string,
+    tableWrapper: PropTypes.string
   }).isRequired,
   columnHeaders: PropTypes.arrayOf(PropTypes.object).isRequired,
   books: PropTypes.arrayOf(PropTypes.object).isRequired,

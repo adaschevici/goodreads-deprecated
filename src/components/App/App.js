@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
+import { fetchBooksAction } from '../../actions/appActions'
 import BookList from '../BookList/BookList'
 import Search from '../Search'
 import './App.css'
@@ -16,20 +19,25 @@ const columnData = [
 ]
 
 class App extends Component {
+  static defaultProps = {
+    books: []
+  }
+
+  static propTypes = {
+    fetchBooks: PropTypes.func.isRequired,
+    books: PropTypes.arrayOf(PropTypes.object)
+  }
+
   constructor(props) {
     super(props)
     this.state = {
-      books: [],
       filter: ''
     }
   }
 
   componentDidMount() {
-    fetch('/books')
-      .then(response => response.json())
-      .then(json => this.setState({
-        books: json
-      }))
+    const { fetchBooks } = this.props
+    fetchBooks('/books')
   }
 
   search = term => {
@@ -39,8 +47,9 @@ class App extends Component {
   }
 
   render() {
-    const { books, filter } = this.state
-    const filteredBooks =  books.filter(book => book.title.includes(filter))
+    const { books } = this.props
+    const { filter } = this.state
+    const filteredBooks =  books ? books.filter(book => book.title.includes(filter)) : []
     return (
       <div className="App">
         <Search search={term => this.search(term)} />
@@ -50,4 +59,12 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = state => ({
+  books: state.appReducer.books
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchBooks: url => dispatch(fetchBooksAction(url))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
