@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
 import TablePagination from '@material-ui/core/TablePagination'
-import TableRow from '@material-ui/core/TableRow'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 
 import Paper from '@material-ui/core/Paper'
@@ -54,34 +54,32 @@ class BookList extends Component {
   }
 
   render() {
-    const { classes, books, columnHeaders, isAuthenticated } = this.props
+    const { classes, books, columnHeaders, loading } = this.props
     const { order, orderBy, rowsPerPage, page } = this.state
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, books.length - page * rowsPerPage)
 
-    const authColumnHeaders = isAuthenticated ? columnHeaders : columnHeaders.slice(2)
     return (
       <Paper className={classes.root}>
         <div className={classes.tableWrapper}>
-          <Table className={classes.table} aria-labelledby="tableTitle">
-            <BookListHead
-              order={order}
-              orderBy={orderBy}
-              onRequestSort={this.handleRequestSort}
-              rowCount={books.length}
-              columnHeaders={authColumnHeaders}
-            />
-            <TableBody>
-              {books
-                .sort(getSorting(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(book => <Book key={book.book_id} isAuthenticated={isAuthenticated} {...book} />)}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 49 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
+          {loading ?
+            <CircularProgress style={{ height: '80px', width: '80px', marginLeft: '5%' }} />
+            : (
+              <Table className={classes.table} aria-labelledby="tableTitle">
+                <BookListHead
+                  order={order}
+                  orderBy={orderBy}
+                  onRequestSort={this.handleRequestSort}
+                  rowCount={books.length}
+                  columnHeaders={columnHeaders}
+                />
+                <TableBody>
+                  {books
+                    .sort(getSorting(order, orderBy))
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map(book => <Book key={book.book_id} {...book} />)}
+                </TableBody>
+              </Table>
+            )
+          }
         </div>
         <TablePagination
           component="div"
@@ -102,6 +100,10 @@ class BookList extends Component {
   }
 }
 
+BookList.defaultProps = {
+  loading: true
+}
+
 BookList.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
@@ -110,7 +112,12 @@ BookList.propTypes = {
   }).isRequired,
   columnHeaders: PropTypes.arrayOf(PropTypes.object).isRequired,
   books: PropTypes.arrayOf(PropTypes.object).isRequired,
+  loading: PropTypes.bool
 }
 
-export default withStyles(styles)(BookList)
+const mapStateToProps = state => ({
+  loading: state.appReducer.loading
+})
+
+export default withStyles(styles)(connect(mapStateToProps)(BookList))
 

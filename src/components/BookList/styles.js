@@ -11,6 +11,9 @@ const styles = theme => ({
   tableWrapper: {
     overflowX: 'auto',
   },
+  progress: {
+    margin: theme.spacing.unit * 4,
+  },
 })
 
 export default styles
