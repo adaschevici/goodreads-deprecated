@@ -1,0 +1,14 @@
+.quote {
+  position: absolute;
+  color: white;
+  top: 30vh;
+  left: 30%;
+  font-size: 70px;
+  z-index: 1; }
+
+.quote-sized {
+  position: absolute;
+  left: 5%;
+  margin-top: 2em;
+  font-size: 40px;
+  width: 100%; }

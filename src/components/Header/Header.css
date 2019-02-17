@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+  position: relative;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5em;
+  width: 180vw;
+}
+
+.logo {
+  position: absolute;
+  right: 0;
+  padding-right: 1em;
+  height: 6em;
+  flex-basis: 6em;
+}
+

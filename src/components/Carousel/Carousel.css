@@ -1,0 +1,11 @@
+@import url(~slick-carousel/slick/slick.css);
+@import url(~slick-carousel/slick/slick-theme.css);
+
+.container {
+  position: relative;
+  margin: auto;
+  padding: 40px;
+  padding-top: 10vh;
+  width: 80%;
+  color: #333;
+}

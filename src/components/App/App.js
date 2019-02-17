@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { fetchBooksAction } from '../../actions/appActions'
+import Header from '../Header'
 import BookList from '../BookList/BookList'
 import Search from '../Search'
 import './App.css'
@@ -52,6 +53,7 @@ class App extends Component {
     const filteredBooks =  books ? books.filter(book => book.title.includes(filter)) : []
     return (
       <div className="App">
+        <Header />
         <Search search={term => this.search(term)} />
         <BookList books={filteredBooks} columnHeaders={columnData} />
       </div>
