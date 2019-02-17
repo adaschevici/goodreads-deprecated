@@ -5,7 +5,6 @@ import Carousel from '../Carousel'
 
 const Home = () => (
   <Fragment>
-    <Header />
     <div className="page-background">
       <Carousel />
     </div>
