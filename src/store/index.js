@@ -10,7 +10,7 @@ const composeEnhancers = composeWithDevTools({
 const createLogger = ({ getState }) =>
   (next) =>
     (action) => {
-      const console = window.console
+      const { console } = window
       const prevState = getState()
       const returnValue = next(action)
       const nextState = getState()

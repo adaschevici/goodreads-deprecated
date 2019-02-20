@@ -9,30 +9,23 @@ import Icon from '@material-ui/core/Icon'
 import { withStyles } from '@material-ui/core/styles'
 import toolbarStyles from './toolbarStyles'
 
-const BookListToolbar = ({ numSelected, classes }) => {
-
-  return (
-    <Toolbar
-      className={classNames(classes.root, {
-        [classes.highlight]: numSelected > 0,
-      })}
-    >
-      <div className={classes.title}>
-        <Button variant="contained" color="primary" className={classes.button}>
-          Add New Book
-          <Icon className={classes.iconHover} color="inherit" style={{ fontSize: 30 }}>
-            add_circle
-          </Icon>
-        </Button>
-      </div>
-      <div className={classes.spacer} />
-    </Toolbar>
-  )
-}
+const BookListToolbar = ({ classes, handleAddBook }) => (
+  <Toolbar className={classNames(classes.root)}>
+    <div className={classes.title}>
+      <Button variant="contained" color="primary" className={classes.button} onClick={handleAddBook}>
+        Add New Book
+        <Icon className={classes.iconHover} color="inherit" style={{ fontSize: 30 }}>
+          add_circle
+        </Icon>
+      </Button>
+    </div>
+    <div className={classes.spacer} />
+  </Toolbar>
+)
 
 BookListToolbar.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  numSelected: PropTypes.number.isRequired,
+  handleAddBook: PropTypes.func.isRequired
 }
 
 export default withStyles(toolbarStyles)(BookListToolbar)

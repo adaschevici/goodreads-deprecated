@@ -54,13 +54,15 @@ class BookList extends Component {
     this.setState({ rowsPerPage: event.target.value })
   }
 
+  handleAddBook = history => () => history.push('/edit-book')
+
   render() {
-    const { classes, books, columnHeaders, loading } = this.props
+    const { classes, books, columnHeaders, loading, history } = this.props
     const { order, orderBy, rowsPerPage, page } = this.state
 
     return (
       <Paper className={classes.root}>
-        <BookListToolbar />
+        <BookListToolbar handleAddBook={this.handleAddBook(history)} />
         <div className={classes.tableWrapper}>
           {loading ?
             <CircularProgress style={{ height: '80px', width: '80px', marginLeft: '5%' }} />
@@ -77,7 +79,7 @@ class BookList extends Component {
                   {books
                     .sort(getSorting(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map(book => <Book key={book.book_id} {...book} />)}
+                    .map(book => <Book key={book.book_id} {...book} history={history} />)}
                 </TableBody>
               </Table>
             )

@@ -8,14 +8,16 @@ import Search from '../Search'
 import './App.css'
 
 const columnData = [
-  { id: 'isbn', numeric: false, disablePadding: false, label: 'ISBN' },
-  { id: 'isbn13', numeric: false, disablePadding: false, label: 'ISBN 13' },
-  { id: 'authors', numeric: false, disablePadding: false, label: 'Author' },
-  { id: 'original_title', numeric: false, disablePadding: false, label: 'Title' },
-  { id: 'original_publication_year', numeric: true, disablePadding: false, label: 'Year' },
-  { id: 'average_rating', numeric: false, disablePadding: false, label: 'Star Rating' },
-  { id: 'language_code', numeric: false, disablePadding: false, label: 'Language' },
-  { id: 'thumbnail', numeric: false, disablePadding: false, label: 'Thumbnail' },
+  { id: 'edit', align: false, disablePadding: false, label: 'Edit' },
+  { id: 'delete', align: false, disablePadding: false, label: 'Delete' },
+  { id: 'isbn', align: false, disablePadding: false, label: 'ISBN' },
+  { id: 'isbn13', align: false, disablePadding: false, label: 'ISBN 13' },
+  { id: 'authors', align: false, disablePadding: false, label: 'Author' },
+  { id: 'original_title', align: false, disablePadding: false, label: 'Title' },
+  { id: 'original_publication_year', align: true, disablePadding: false, label: 'Year' },
+  { id: 'average_rating', align: false, disablePadding: false, label: 'Star Rating' },
+  { id: 'language_code', align: false, disablePadding: false, label: 'Language' },
+  { id: 'thumbnail', align: false, disablePadding: false, label: 'Thumbnail' },
 ]
 
 class App extends Component {
@@ -25,7 +27,8 @@ class App extends Component {
 
   static propTypes = {
     fetchBooks: PropTypes.func.isRequired,
-    books: PropTypes.arrayOf(PropTypes.object)
+    books: PropTypes.arrayOf(PropTypes.object),
+    history: PropTypes.shape({}).isRequired
   }
 
   constructor(props) {
@@ -47,13 +50,13 @@ class App extends Component {
   }
 
   render() {
-    const { books } = this.props
+    const { books, history } = this.props
     const { filter } = this.state
     const filteredBooks =  books ? books.filter(book => book.title.includes(filter)) : []
     return (
       <div className="App">
         <Search search={term => this.search(term)} />
-        <BookList books={filteredBooks} columnHeaders={columnData} />
+        <BookList books={filteredBooks} columnHeaders={columnData} history={history} />
       </div>
     )
   }

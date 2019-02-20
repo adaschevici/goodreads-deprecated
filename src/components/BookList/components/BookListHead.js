@@ -10,9 +10,10 @@ import toolbarStyles from './toolbarStyles'
 
 class BookListHead extends Component {
   createSortHandler = property => event => {
+    const { onRequestSort } = this.props
     if (['edit', 'delete'].includes(property))
       return () => {}
-    this.props.onRequestSort(event, property)
+    return onRequestSort(event, property)
   }
 
   render() {
@@ -58,6 +59,7 @@ BookListHead.propTypes = {
   order: PropTypes.string.isRequired,
   orderBy: PropTypes.string.isRequired,
   columnHeaders: PropTypes.arrayOf(PropTypes.object).isRequired,
+  classes: PropTypes.shape({}).isRequired
 }
 
 export default withStyles(toolbarStyles)(BookListHead)
