@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper'
 
 import Book from '../Book/Book'
 import BookListHead from './components/BookListHead'
+import BookListToolbar from './components/BookListToolbar'
 import styles from './styles'
 
 function getSorting(order, orderBy) {
@@ -59,6 +60,7 @@ class BookList extends Component {
 
     return (
       <Paper className={classes.root}>
+        <BookListToolbar />
         <div className={classes.tableWrapper}>
           {loading ?
             <CircularProgress style={{ height: '80px', width: '80px', marginLeft: '5%' }} />

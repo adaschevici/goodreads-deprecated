@@ -31,7 +31,7 @@ const BookListToolbar = ({ numSelected, classes }) => {
 }
 
 BookListToolbar.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.shape({}).isRequired,
   numSelected: PropTypes.number.isRequired,
 }
 
