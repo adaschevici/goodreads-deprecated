@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="search"
+>
+  <div
+    className="MuiFormControl-root-1 MuiFormControl-marginNormal-2"
+  >
+    <label
+      className="MuiFormLabel-root-16 MuiInputLabel-root-5 MuiInputLabel-formControl-10 MuiInputLabel-animated-13 MuiInputLabel-outlined-15"
+      data-shrink={false}
+      htmlFor="outlined-search"
+    >
+      Search field
+    </label>
+    <div
+      className="MuiInputBase-root-36 MuiOutlinedInput-root-23 MuiInputBase-formControl-37"
+      onClick={[Function]}
+    >
+      <fieldset
+        aria-hidden={true}
+        className="MuiPrivateNotchedOutline-root-53 MuiOutlinedInput-notchedOutline-30"
+        style={
+          Object {
+            "paddingLeft": 8,
+          }
+        }
+      >
+        <legend
+          className="MuiPrivateNotchedOutline-legend-54"
+          style={
+            Object {
+              "width": 0.01,
+            }
+          }
+        >
+          <span
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "&#8203;",
+              }
+            }
+          />
+        </legend>
+      </fieldset>
+      <input
+        aria-invalid={false}
+        className="MuiInputBase-input-46 MuiOutlinedInput-input-31 MuiInputBase-inputType-49 MuiInputBase-inputTypeSearch-50"
+        disabled={false}
+        id="outlined-search"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        required={false}
+        type="search"
+      />
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "margin": "auto 0",
+      }
+    }
+  >
+    <button
+      className="MuiButtonBase-root-81 MuiButton-root-55 MuiButton-contained-66 MuiButton-containedPrimary-67 MuiButton-raised-69 MuiButton-raisedPrimary-70"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex="0"
+      type="button"
+    >
+      <span
+        className="MuiButton-label-56"
+      >
+        Search
+      </span>
+      <span
+        className="MuiTouchRipple-root-84"
+      />
+    </button>
+  </div>
+</div>
+`;

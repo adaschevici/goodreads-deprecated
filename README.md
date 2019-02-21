@@ -1,5 +1,9 @@
-Exercise:
-1) Add custom validator to validate rating between 1-5 stars and integer
+Docs:
 
-Optional:
-2) Implement submit action
+https://facebook.github.io/create-react-app/docs/running-tests
+https://jestjs.io/docs/en/snapshot-testing
+
+Exercise:
+
+1) Add test for Input
+2) Add test for button
