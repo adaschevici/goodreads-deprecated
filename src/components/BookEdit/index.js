@@ -3,6 +3,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import { Formik } from 'formik'
 import Paper from '@material-ui/core/Paper'
 import { withRouter } from 'react-router'
+import * as Yup from 'yup'
 import { Form } from './components/form'
 
 const styles = theme => ({
@@ -22,15 +23,28 @@ const styles = theme => ({
   }
 })
 
+const validationSchema = Yup.object({
+  originalTitle: Yup.string('Enter the title')
+    .required('A title is required'),
+  authors: Yup.string('Enter authors')
+    .required('Authors are required'),
+  avgRating: Yup.number('Enter average rating')
+    .test('test-valid-rating', 'Must be greater than 1', rating => rating>1)
+})
+
 const BookEdit = props => {
-  const { classes, bookId } = props
+  const { classes } = props
+  const { location } = props
+  const values = location.state ? { ...location.state.book } : {}
   return (
     <Fragment>
       <div className={classes.container}>
         <Paper elevation={1} className={classes.paper}>
           <h1>Book Editing Form</h1>
           <Formik
-            render={() => <Form {...props} />}
+            initialValues={values}
+            render={fields => <Form {...fields} />}
+            validationSchema={validationSchema}
           />
         </Paper>
       </div>

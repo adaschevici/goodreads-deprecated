@@ -16,7 +16,6 @@ const columnData = [
   { id: 'original_title', align: false, disablePadding: false, label: 'Title' },
   { id: 'original_publication_year', align: true, disablePadding: false, label: 'Year' },
   { id: 'average_rating', align: false, disablePadding: false, label: 'Star Rating' },
-  { id: 'language_code', align: false, disablePadding: false, label: 'Language' },
   { id: 'thumbnail', align: false, disablePadding: false, label: 'Thumbnail' },
 ]
 

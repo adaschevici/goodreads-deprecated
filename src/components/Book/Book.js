@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import Fab from '@material-ui/core/Fab'
 import Icon from '@material-ui/core/Icon'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -22,9 +21,9 @@ const Book = props => {
     original_title: originalTitle,
     original_publication_year: originalPublicationYear,
     average_rating: avgRating,
-    language_code: langCode,
     small_image_url: smallImgUrl
   } = props
+  const book = { isbn, isbn13, authors, originalTitle, originalPublicationYear, avgRating, smallImgUrl }
   return  (
     <TableRow
       hover
@@ -32,7 +31,7 @@ const Book = props => {
       key={bookId}
     >
       <TableCell>
-        <Link to={{ pathname: '/edit-book', state: { bookId }}}>
+        <Link to={{ pathname: '/edit-book', state: { book }}}>
           <Fab color="secondary" aria-label="Edit" className={classes.fab}>
             <Icon>edit_icon</Icon>
           </Fab>
@@ -49,7 +48,6 @@ const Book = props => {
       <TableCell className={classes.tableCell}>{originalTitle}</TableCell>
       <TableCell className={classes.tableCell}>{Number(originalPublicationYear)}</TableCell>
       <TableCell className={classes.tableCell}>{avgRating}</TableCell>
-      <TableCell className={classes.tableCell}>{langCode}</TableCell>
       <TableCell>
         <img src={smallImgUrl} alt={originalTitle} />
       </TableCell>
